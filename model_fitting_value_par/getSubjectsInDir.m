@@ -1,4 +1,4 @@
-function [ subjects ] = getSubjectsInDir(data_path, prefix)
+function [ subjects ] = getSubjectsInDir(data_path, prefix,suffix)
 %GETSUBJECTSINDIR Extracts all subject IDs from a DATA_PATH,
 %Data in .mat file are generated when running the task script. We save the data from the same subject in the folder named 'subjNo.' such as 'subj78'. 
 %assuming that all folders follow the naming convention "prefix{ID}"
@@ -9,7 +9,7 @@ subjects = zeros(1, length(subj_dirs));
 for k = 1 : length(subj_dirs)
     % Extract subject ids from folder names
     if subj_dirs(k).isdir
-        subjects(k) = str2num(subj_dirs(k).name((1 + length(prefix)) : end));
+        subjects(k) = str2num(subj_dirs(k).name((1 + length(prefix)) : (length(subj_dirs(k).name)-length(suffix))));
     end
 end
 

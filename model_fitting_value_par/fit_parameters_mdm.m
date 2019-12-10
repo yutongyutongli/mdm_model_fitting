@@ -7,11 +7,11 @@
 clearvars
 close all
 
-% poolobj = parpool('local', 8);
+poolobj = parpool('local', 6);
 
 %% Define conditions
-fitparwave = 'Behavior data fitpar_09300219'; % folder to save all the fitpar data structures
-fitbywhat = 'value'; % what to use as values 'value', 'rating', 'arbitrary'(0,1,2,3,4)
+fitparwave = 'FitData_12102019'; % folder to save all the fitpar data structures
+%fitbywhat = 'value'; % what to use as values 'value', 'rating', 'arbitrary'(0,1,2,3,4)
 model = 'ambigSVPar'; % which utility function 'ambigNriskValPar', 'ambigSVPar'
 includeAmbig = true;
 search = 'grid'; % 'grid', 'single'
@@ -61,9 +61,9 @@ fixed_valueP = 5; % Value of fixed reward
 fixed_prob = 1;   % prb of fixed reward 
 
 %% Set up loading & subject selection
-root = 'D:\Ruonan\Projects in the lab\MDM Project\Medical Decision Making Imaging\MDM_imaging\Behavioral Analysis';
-data_path = fullfile(root, 'PTB Behavior Log/'); % root of folders is sufficient
-rating_filename = fullfile(root, 'Behavior Analysis/MDM_Rating.csv');
+root = 'C:\Users\yl2268\Documents\RA_aging\';
+data_path = fullfile(root, 'RawData_RA\'); % root of folders is sufficient
+% rating_filename = fullfile(root, 'Behavior Analysis/MDM_Rating.csv');
 fitpar_out_path = fullfile(root, 'Behavior fitpar files',fitparwave);
 
 % if folder does not exist, create folder
@@ -74,8 +74,8 @@ end
 addpath(genpath(data_path)); % generate path for all the subject data folder
 
 % get all subjects number in the folder
-subjects = getSubjectsInDir(data_path, 'subj');
-exclude = [2581]; % TEMPORARY: subjects incomplete data (that the script is not ready for)
+subjects = getSubjectsInDir(data_path, 'AG_','_RA');
+exclude = [12]; % TEMPORARY: subjects incomplete data (that the script is not ready for)
 subjects = subjects(~ismember(subjects, exclude));
 % subjects = [2654 2655 2656 2657 2658 2659 2660 2661 2662 2663 2664 2665 2666];
 % subjects = [2663];
